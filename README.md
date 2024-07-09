@@ -6,4 +6,6 @@ A blog post website
 git clone https://github.com/o0PHOENIX0o/Blog-post-web.git
 cd Blog-post-web
 npm install
+
+nodemone index.js
 ```
