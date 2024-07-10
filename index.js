@@ -9,7 +9,13 @@ import { fileURLToPath } from "url";
 const app = express();
 const port = 5000;
 const __dirname = dirname(fileURLToPath(import.meta.url));
+const upload = multer({ storage: storage });
 const dbPath = path.resolve(__dirname, 'postData.json');
+
+app.use(express.static("public"));
+app.set('view engine', 'ejs');
+app.use(bodyParser.urlencoded({ extended: true }));
+
 let prefix;
 
 const storage = multer.diskStorage({
@@ -22,11 +28,7 @@ const storage = multer.diskStorage({
     }
 });
 
-const upload = multer({ storage: storage });
 
-app.use(express.static("public"));
-app.set('view engine', 'ejs');
-app.use(bodyParser.urlencoded({ extended: true }));
 
 function readData() {
     try {
