@@ -9,7 +9,6 @@ import { fileURLToPath } from "url";
 const app = express();
 const port = 5000;
 const __dirname = dirname(fileURLToPath(import.meta.url));
-const upload = multer({ storage: storage });
 const dbPath = path.resolve(__dirname, 'postData.json');
 
 app.use(express.static("public"));
@@ -28,6 +27,7 @@ const storage = multer.diskStorage({
     }
 });
 
+const upload = multer({ storage: storage });
 
 
 function readData() {
