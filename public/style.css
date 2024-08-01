@@ -190,9 +190,7 @@ h3{
 }
 
 #about img {
-    height: 200px;
-    width: 200px;
-    float: right;
+    height: 170px;
     margin: 1rem;
 }
 
@@ -314,6 +312,7 @@ form input, textarea{
 /* --------------------------------------media queries=----------------------------- */
 
 
+
 @media (min-width:200px) {
     .blog img{
         height: 200px;
@@ -334,6 +333,11 @@ form input, textarea{
     
     .image img{   
         height: 660px;
+    }
+
+    #about img{
+        width: 200px;
+        float: right;
     }
 
 
