@@ -1,3 +1,7 @@
+:root{
+    --transitionDelay: 15s;
+}
+
 * {
 
     box-sizing: border-box;
@@ -44,6 +48,22 @@ h3{
     text-decoration-color: hsl(45, 100%, 72%);
     text-underline-offset: 0.5rem;
     line-height: 2rem;
+}
+
+.btn{
+    max-width: 50%;
+    cursor: pointer;
+    background-color: black !important;
+    padding: 1rem;
+    color: hsl(45, 100%, 72%);
+    border-radius: 20px;
+    background: linear-gradient(to bottom right, hsl(0, 0%, 25%) 0%, hsl(0deg 0% 9.6% / 63%) 50%);
+    box-shadow: -4px 8px 24px hsla(0, 0%, 0%, 0.25);
+    transition: all 1s;
+}
+
+.btn:hover{
+    background: linear-gradient(to bottom right, hsl(45deg 72.49% 37.06%) 0%, hsl(45deg 59.45% 22.31%) 25%, hsl(0deg 0% 0% / 75%) 50%) !important;
 }
 
 #Header{
@@ -105,31 +125,15 @@ h3{
     padding: 1rem;
 }
 
-#about, #blogs{
-    text-align: center;
-}
+
 
 #Home{
     overflow: hidden;
     display: flex;
     flex-direction: row-reverse;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.image{
-    rotate: 20deg;
-    display: none;
-}
-
-#Home .content{
-    width: 100%;
-    height: 100%;
-    padding: 2rem;
-    display: flex;
-    padding: 2rem;
-    flex-direction: column;
     justify-content: center;
+    align-items: center;
+    position: relative;
 }
 
 #Home .content h1, 
@@ -137,25 +141,49 @@ h3{
     letter-spacing: 2px;
 }
 
-#Home button, 
-form input[type="submit"]{
-    max-width: max-content;
-    cursor: pointer;
-    background-color: black;
-    padding: 1rem;
-    color: hsl(45, 100%, 72%);
-    border-radius: 20px;
-    background: linear-gradient(to bottom right, hsl(0, 0%, 25%) 0%, hsl(0deg 0% 9.6% / 63%) 50%);
-    box-shadow: -4px 8px 24px hsla(0, 0%, 0%, 0.25);
-    transition: all 1s;
+#Home .content  {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: #000000;
+    border-radius: 2rem;
+    width: 30rem;
+    padding: 2rem;
+    backdrop-filter: blur(50px);
+    background: transparent;
 }
 
-#Home button:hover,
-form input[type="submit"]{
-    background: linear-gradient(to bottom right, hsl(45deg 72.49% 37.06%) 0%, hsl(45deg 59.45% 22.31%) 25%, hsl(0deg 0% 0% / 75%) 50%) !important;
+#Home .image{
+    display: flex; 
+    gap: 5rem;
+    position: absolute;
+    left:0%;
+    height: 200%;
+    rotate: 20deg;
+    overflow: hidden;
+}
+
+#Home .image img{
+    height: 100%;
+}
+.firstImg{
+    animation: slideDown var(--transitionDelay) infinite linear;
+}
+
+@keyframes slideDown {
+    0% {
+        transform: translateY(-100%);
+    }
+    100% {
+        transform: translateY(0);
+    }
 }
 
 
+
+#about, #blogs{
+    text-align: center;
+}
 
 #about .content{
     text-align: justify;
@@ -263,12 +291,6 @@ form label{
     width: 100%;
 }
 
-form input[type="submit"]{
-    width: 50%;
-    width: 130px;
-    max-width: unset;
-}
-
 form input, textarea{
     color:white;
     padding: 1rem;
@@ -291,24 +313,6 @@ form input, textarea{
 
 /* --------------------------------------media queries=----------------------------- */
 
-@media (max-width:510px) {
-    #Home .content{
-        background-image: url("images/Background/blog-post-image-guide.webp");
-    }
-    #Home .content >div{
-        backdrop-filter: blur(24px);
-        background: transparent;
-        padding: 10px;
-        border-radius: 20px;
-    }
-    #Home .content >div button{
-        border: 1px solid;
-        color: white;
-                background: linear-gradient(to bottom right, hsl(0deg 0% 76.53%) 0%, hsl(43.7deg 60.12% 26.65% / 90%) 50%);
-                box-shadow: -4px 8px 24px hsl(0deg 0% 0% / 90%);
-    }
-
-}
 
 @media (min-width:200px) {
     .blog img{
@@ -325,22 +329,34 @@ form input, textarea{
 
     .image{
         rotate: 10deg;
-        display: block;
+        display: flex;
     }
     
-    .image img{
-        
+    .image img{   
         height: 660px;
-        width: 250px;
     }
-    #Home .content{
-        padding: 1rem;
-    }
+
 
 
 }
 
 @media (min-width:700px) {
+
+
+    #Home .image{
+        position: static;
+  
+    }
+
+    #Home .content{
+        color:white;
+        border: none;
+        width: unset;
+        padding: unset;
+        backdrop-filter: none;
+        background: unset;
+    }
+
     .grid-container{
         grid-template-columns: repeat(3, auto);
     }
@@ -352,7 +368,7 @@ form input, textarea{
 
 
     .image{
-        display: block;
+        display: flex;
         rotate: 10deg;
         
     }
@@ -360,11 +376,8 @@ form input, textarea{
     .image img{
         display: block;
         height: 800px;
-        width: 400px;
     }
-    #Home .content{
-        padding: 1rem;
-    }
+   
     
 }
 
@@ -377,17 +390,13 @@ form input, textarea{
         width: 300px;
     }
     .image{
-        display: block;
+        display: flex;
         rotate: 20deg;
     }
     
     .image img{
         display: block;
         height: 800px;
-        width: 600px;
-    }
-    #Home .content{
-        padding: 1rem;
     }
 
     .blog p{
